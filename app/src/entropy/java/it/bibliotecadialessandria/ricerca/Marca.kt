@@ -3,11 +3,15 @@ package it.bibliotecadialessandria.ricerca
 /** Tutto quello che cambia da un canale all'altro, per Entropy for Life (beta, 10/11/2026). */
 object Marca {
     const val NOME = "Entropy for Life"
+    /** Tema scuro e chiaro a scelta (scuro di partenza); false = un solo tema, quello dei colori in values. */
+    const val DOPPIO_TEMA = true
     const val MOTTO = "I video di biologia di Giacomo Moro Mauretto, a portata di mano"
     /** Il canale YouTube e il suo id senza «UC». */
     const val CANALE = "https://www.youtube.com/@EntropyforLife"
     const val CANALE_ID = "QPnCKNfzKn4OmPrx1KDWvg"
     const val SITO = "https://entropyforlife.it/"
+    /** Il codice pubblico dell'app (licenza: tutti i diritti riservati). */
+    const val CODICE = "https://github.com/AlfonsoVertu/entropy-for-life-android"
     /** La cartella su mondo.workingwithweb.eu con l'APK, versione.json e catalogo.json. */
     const val MONDO = "entropy-for-life"
     const val CERCA_SOTTO = "Per tema, rubrica e tipo"

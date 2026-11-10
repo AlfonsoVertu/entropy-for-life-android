@@ -3,7 +3,9 @@ package it.bibliotecadialessandria.ricerca
 import android.Manifest
 import android.app.Activity
 import android.app.AlertDialog
+import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import android.content.pm.PackageManager
 import android.content.res.ColorStateList
 import android.graphics.Bitmap
@@ -100,6 +102,19 @@ class RicercaActivity : Activity() {
     private var idPreferiti: Set<String> = emptySet()
 
     private val anteprime = HashMap<String, Bitmap?>()
+
+    /**
+     * (10/11/2026, Alfonso: «doppia modalità, dark di default») tema scuro o chiaro scelto nell'app, scuro di partenza.
+     * Si applica cambiando la modalità notte della configurazione dell'activity: le risorse in values-night
+     * (colori e tema) vincono quando e' scuro. Le app con un solo tema (Marca.DOPPIO_TEMA = false) restano come sono.
+     */
+    override fun attachBaseContext(base: Context) {
+        val conf = Configuration(base.resources.configuration)
+        val scuro = base.getSharedPreferences("aspetto", Context.MODE_PRIVATE).getBoolean("scuro", true)
+        conf.uiMode = (conf.uiMode and Configuration.UI_MODE_NIGHT_MASK.inv()) or
+            (if (scuro) Configuration.UI_MODE_NIGHT_YES else Configuration.UI_MODE_NIGHT_NO)
+        super.attachBaseContext(base.createConfigurationContext(conf))
+    }
 
     override fun onCreate(stato: Bundle?) {
         super.onCreate(stato)
@@ -255,6 +270,7 @@ class RicercaActivity : Activity() {
             dentro.addView(riga, sotto(12))
         }
         dentro.addView(cartaNotifiche(), sotto(12))
+        if (Marca.DOPPIO_TEMA) dentro.addView(cartaTema(), sotto(12))
         dentro.addView(cartaDona(), sopra(4))
         dentro.addView(nota(Marca.PIEDE).apply {
             gravity = Gravity.CENTER; setPadding(0, dp(16), 0, 0)
@@ -610,7 +626,7 @@ class RicercaActivity : Activity() {
             apri("https://workingwithweb.it/webagency")
         }, sopra(8))
         card.addView(bottone("Codice sorgente su GitHub") {
-            apri("https://github.com/AlfonsoVertu/biblioteca-alessandria-android")
+            apri(Marca.CODICE)
         }, sopra(8))
         card.addView(nota("Versione ${Aggiornamento.nomeInstallato(this)} · si aggiorna da sola"), sopra(12))
         card.addView(bottone("Cerca aggiornamenti") { Aggiornamento.proponi(this, daSola = false) }, sopra(6))
@@ -936,6 +952,25 @@ class RicercaActivity : Activity() {
             anteprime[url] = b
             b?.let(dove::setImageBitmap)
         }
+    }
+
+    /** L'interruttore del tema scuro sulla home: cambia e ridisegna l'app. */
+    private fun cartaTema(): View = LinearLayout(this).apply {
+        orientation = LinearLayout.HORIZONTAL; gravity = Gravity.CENTER_VERTICAL
+        setPadding(dp(18), dp(14), dp(18), dp(14))
+        background = sfondo(colore(R.color.card), colore(R.color.bordo), 22)
+        val testi = LinearLayout(this@RicercaActivity).apply { orientation = LinearLayout.VERTICAL }
+        testi.addView(TextView(this@RicercaActivity).apply { text = "Tema scuro"; textSize = 15f
+            setTypeface(Typeface.DEFAULT, Typeface.BOLD); setTextColor(colore(R.color.testo)) })
+        testi.addView(TextView(this@RicercaActivity).apply { text = "Spento: fondo chiaro"; textSize = 12.5f
+            setTextColor(colore(R.color.tenue)) })
+        addView(testi, LinearLayout.LayoutParams(0, WRAP_CONTENT, 1f))
+        val pref = getSharedPreferences("aspetto", Context.MODE_PRIVATE)
+        addView(Switch(this@RicercaActivity).apply {
+            isChecked = pref.getBoolean("scuro", true)
+            thumbTintList = ColorStateList.valueOf(colore(R.color.oro))
+            setOnCheckedChangeListener { _, on -> pref.edit().putBoolean("scuro", on).apply(); recreate() }
+        })
     }
 
     /** L'interruttore delle notifiche sulla home. */

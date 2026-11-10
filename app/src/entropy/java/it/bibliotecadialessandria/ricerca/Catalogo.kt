@@ -147,7 +147,10 @@ object Catalogo {
                 (rub.isEmpty() || x.rubriche.any { it in rub }) &&
                 parole.all { p -> ("titolo" in dove && p in x.titolo) || ("descrizione" in dove && p in x.descrizione) || ("tag" in dove && p in x.tag) }
         }
+        // prima chi ha le parole nel titolo, poi nei tag, poi solo nella descrizione; a parita', i piu' recenti
+        fun punti(x: Voce) = parole.sumOf { p -> (if (p in x.titolo) 4 else 0) + (if (p in x.tag) 2 else 0) + (if (p in x.descrizione) 1 else 0) }
+        val ordinati = if (parole.isEmpty()) trovati else trovati.sortedByDescending { punti(it) }
         val max = valori["MaxRisultati"]?.toIntOrNull()?.coerceIn(1, 1000) ?: 100
-        Esito(trovati.take(max).map { it.v }, trovati.size)
+        Esito(ordinati.take(max).map { it.v }, trovati.size)
     }
 }

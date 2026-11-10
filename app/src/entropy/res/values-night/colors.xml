@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Entropy for Life, tema scuro (di partenza): bosco di notte, verde dell'albero come accento -->
+    <color name="fondo">#FF0F1612</color>
+    <color name="card">#FF17221B</color>
+    <color name="bordo">#FF2A3B2E</color>
+    <color name="testo">#FFE8F0E5</color>
+    <color name="tenue">#FF9FB3A1</color>
+    <color name="oro">#FF4CAF5E</color>
+    <color name="su_oro">#FF0B120D</color>
+    <color name="icona_fondo">#FFFFFFFF</color>
+</resources>

@@ -25,14 +25,15 @@ android {
         targetSdk = 35
     }
 
-    // Il codice comune sta in src/main; nome, link, colori, icona e catalogo del canale in src/entropy.
+    // (10/11/2026) un'app per canale: stesso codice (src/main), nome, link, colori, icona e catalogo
+    // nella cartella del canale (src/<canale>). Firma comune: le app della famiglia si riconoscono.
     flavorDimensions += "canale"
     productFlavors {
         create("entropy") {
             dimension = "canale"
             applicationId = "eu.workingwithweb.canali.entropyforlife"
-            versionCode = 2
-            versionName = "0.2.0"
+            versionCode = 4
+            versionName = "0.3.0"
         }
     }
 
