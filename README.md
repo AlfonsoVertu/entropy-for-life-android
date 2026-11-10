@@ -16,8 +16,8 @@ dentro l'app (`app/src/entropy/assets/catalogo.json`); i video nuovi li aggiunge
 
 ## Scaricare l'app
 
-https://mondo.workingwithweb.eu/entropy-for-life-unofficial-app/ · controllo VirusTotal della 0.2.0:
-[0 su 67](https://www.virustotal.com/gui/file/4efe78a9428e10d64ca347cac81b6aa52a4143602c34bfef5adcf66eb96fd067)
+https://mondo.workingwithweb.eu/entropy-for-life-unofficial-app/ · controllo VirusTotal della 2.42.42:
+[0 su 67](https://www.virustotal.com/gui/file/cd691d50c70962f2aed6422b440b31f05da44f9093a96370df5098a8a6770c2b)
 
 ## Licenza
 
