@@ -32,8 +32,8 @@ android {
         create("entropy") {
             dimension = "canale"
             applicationId = "eu.workingwithweb.canali.entropyforlife"
-            versionCode = 4
-            versionName = "0.3.0"
+            versionCode = 6
+            versionName = "2.42.42"
         }
     }
 
