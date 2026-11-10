@@ -20,6 +20,8 @@ object Marca {
     const val MONDO = "entropy-for-life"
     const val CERCA_SOTTO = "Per tema, rubrica e tipo"
     const val CERCO = "Cerco fra i video..."
+    /** Il suggerimento nella casella di ricerca. */
+    const val SUGGERIMENTO = "Cerca un video: evoluzione, virus, cervello..."
     const val NON_RISPONDE = "Non riesco a leggere il catalogo dei video. Riprova."
     const val NOTA_CERCA = "Ricerca fra tutti i video pubblici del canale · app non ufficiale"
     const val PIEDE = "App non ufficiale · i video sono di Entropy for Life (Giacomo Moro Mauretto)"
