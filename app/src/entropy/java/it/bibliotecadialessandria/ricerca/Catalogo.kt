@@ -153,4 +153,9 @@ object Catalogo {
         val max = valori["MaxRisultati"]?.toIntOrNull()?.coerceIn(1, 1000) ?: 100
         Esito(ordinati.take(max).map { it.v }, trovati.size)
     }
+
+    /** Le app di un solo canale avvisano di tutto quello che pubblica. */
+    fun paroleCasa(c: Context): List<String> = emptyList()
+    /** Solo per le app con piu' canali: qui «Novita'» legge il feed del canale. */
+    suspend fun recenti(tipo: String): List<Video> = emptyList()
 }
