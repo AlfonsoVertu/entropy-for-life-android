@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- I colori del marchio di Entropy for Life: fondo bianco, l'albero verde, testo scuro -->
+    <color name="fondo">#FFF6F8F2</color>
+    <color name="card">#FFFFFFFF</color>
+    <color name="bordo">#FFD5E2CC</color>
+    <color name="testo">#FF1D2A1E</color>
+    <color name="tenue">#FF5C6E5D</color>
+    <color name="oro">#FF2E8B3E</color>
+    <color name="su_oro">#FFFFFFFF</color>
+    <color name="icona_fondo">#FFFFFFFF</color>
+</resources>
